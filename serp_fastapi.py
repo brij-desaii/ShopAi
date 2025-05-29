@@ -12,20 +12,9 @@ load_dotenv()
 SERPAPI_KEY = os.getenv("SERP_API_KEY")
 print("🔑 SERPAPI_KEY Loaded:", SERPAPI_KEY)
 
-
-
-# api_key = os.getenv("MY_API_KEY")
-
 print("✅ This is the correct app_main.py being run")
 
 app = FastAPI()
-
-# Configure Cloudinary
-# cloudinary.config(
-#     cloud_name="ddsltjt75",
-#     api_key=os.getenv("CLOUDINARY_API_KEY"),
-#     api_secret="ZxggXifJSJQh2VeRcPA7Llzwg7E"
-# )
 
 cloudinary.config(
     cloud_name="ddsltjt75",
@@ -44,16 +33,6 @@ def upload_to_cloudinary(file):
     upload_result = cloudinary.uploader.upload(file.file)
     print(upload_result["secure_url"])
     return upload_result["secure_url"]
-
-# # Search similar products using SerpAPI
-# def search_similar_products(image_url):
-#     params = {
-#         "engine": "google_reverse_image",
-#         "image_url": image_url,
-#         "api_key": SERPAPI_KEY
-#     }
-#     response = requests.get("https://serpapi.com/search.json", params=params)
-#     return response.json()
 
 
 def search_with_google_lens(image_url):
@@ -97,25 +76,6 @@ def extract_products(data):
         for item in data.get("visual_matches", [])
         if is_allowed(item.get("link", ""))
     ]
-
-# def extract_products(data):
-#     allowed_domains = ["flipkart.com", "myntra.com"]
-
-#     def is_allowed(link):
-#         return any(domain in link for domain in allowed_domains)
-
-#     return [
-#         {
-#             "title": item.get("title"),
-#             "link": item.get("link"),
-#             "thumbnail": item.get("thumbnail") or item.get("image"),
-#         }
-#         for item in data.get("visual_matches", [])
-#         if is_allowed(item.get("link", ""))
-#     ]
-
-
-
 
 
 # POST endpoint to accept image and return products
