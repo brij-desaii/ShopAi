@@ -11,7 +11,7 @@ export default function GenerateImage() {
     setLoading(true);
     setImage(null);
     try {
-      const res = await axios.post('http://127.0.0.1:8000/generate-image', { description });
+      const res = await axios.post('https://shopai-4.onrender.com/generate-image', { description });
       setImage(res.data.image);
     } catch (error) {
       console.error(error);

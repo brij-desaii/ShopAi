@@ -32,7 +32,7 @@ export default function UploadImage() {
     } as any);
 
     try {
-      const res = await axios.post('http://127.0.0.1:8000/search-products/', formData, {
+      const res = await axios.post('https://shopai-4.onrender.com/search-products/', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setProducts(res.data.products || []);

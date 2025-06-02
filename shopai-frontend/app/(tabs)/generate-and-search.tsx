@@ -13,7 +13,7 @@ export default function GenerateAndSearch() {
     setImageUrl(null);
     setProducts([]);
     try {
-      const res = await axios.post('http://127.0.0.1:8000/generate-and-search/', { description });
+      const res = await axios.post('https://shopai-4.onrender.com/generate-and-search/', { description });
       setImageUrl(res.data.image_url);
       setProducts(res.data.products || []);
     } catch (err) {

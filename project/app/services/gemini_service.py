@@ -4,6 +4,9 @@ from PIL import Image
 from io import BytesIO
 import base64
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=GEMINI_API_KEY)
