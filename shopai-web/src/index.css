@@ -1,7 +1,4 @@
 /* General reset and default light mode styles */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 body {
   margin: 0;
