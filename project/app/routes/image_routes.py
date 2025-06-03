@@ -1,7 +1,7 @@
 from fastapi import APIRouter, File, UploadFile
 from pydantic import BaseModel
 from app.services.cloudinary_service import upload_to_cloudinary, upload_base64_to_cloudinary
-from app.services.gemini_service import generate_image_from_prompt, generate_image
+from app.services.gemini_service import generate_image_from_prompt
 from app.services.serpapi_service import search_with_google_lens, extract_products
 from fastapi.responses import JSONResponse
 
@@ -32,15 +32,11 @@ async def search_products(file: UploadFile = File(...)):
 @router.post("/generate-and-search/")
 async def generate_and_search(request: PromptRequest):
     try:
-        print("hiiiii")
         # Step 1: Generate image (await async function)
         base64_image = generate_image_from_prompt(request.description)
-        print("after gen image")
 
         # Step 2: Upload to Cloudinary
         image_url = upload_base64_to_cloudinary(base64_image)
-
-        print("after img url", image_url)
 
         # Step 3: Search products using Google Lens
         serp_data = search_with_google_lens(image_url)
