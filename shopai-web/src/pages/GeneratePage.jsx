@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../styles/ProductGrid.css';
+console.log("CSS imported ✅");
+
 
 export default function GeneratePage() {
   const [description, setDescription] = useState('');
@@ -72,6 +75,7 @@ export default function GeneratePage() {
 
   return (
     <div className="container">
+      {/* Input and buttons unchanged */}
       <label
         htmlFor="description-input"
         style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold', fontSize: '20px' }}
@@ -105,7 +109,9 @@ export default function GeneratePage() {
 
       {products.length > 0 && (
         <div className="product-grid">
-          <h2 style={{ textAlign: 'center', marginBottom: '16px' }}>Product Results</h2>
+          <h2 style={{ gridColumn: '1 / -1', textAlign: 'center', marginBottom: '16px' }}>
+            Product Results
+          </h2>
           {products.map((item, index) => (
             <div className="product-card" key={index}>
               {item.thumbnail && (
